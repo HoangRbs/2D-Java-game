@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_javabullshitproject" default="compile.module.javabullshitproject">
+  <dirname property="module.javabullshitproject.basedir" file="${ant.file.module_javabullshitproject}"/>
+  
+  <property name="module.jdk.home.javabullshitproject" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.javabullshitproject" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.javabullshitproject" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.javabullshitproject" value="-encoding UTF-8 -source 11 -target 11 ${compiler.args}"/>
+  
+  <property name="javabullshitproject.output.dir" value="${module.javabullshitproject.basedir}/out/production/JavaBullShitProject"/>
+  <property name="javabullshitproject.testoutput.dir" value="${module.javabullshitproject.basedir}/out/test/JavaBullShitProject"/>
+  
+  <path id="javabullshitproject.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="javabullshitproject.module.production.classpath">
+    <path refid="${module.jdk.classpath.javabullshitproject}"/>
+  </path>
+  
+  <path id="javabullshitproject.runtime.production.module.classpath">
+    <pathelement location="${javabullshitproject.output.dir}"/>
+  </path>
+  
+  <path id="javabullshitproject.module.classpath">
+    <path refid="${module.jdk.classpath.javabullshitproject}"/>
+    <pathelement location="${javabullshitproject.output.dir}"/>
+  </path>
+  
+  <path id="javabullshitproject.runtime.module.classpath">
+    <pathelement location="${javabullshitproject.testoutput.dir}"/>
+    <pathelement location="${javabullshitproject.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.javabullshitproject">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.javabullshitproject">
+    <patternset refid="excluded.from.module.javabullshitproject"/>
+  </patternset>
+  
+  <path id="javabullshitproject.module.sourcepath">
+    <dirset dir="${module.javabullshitproject.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.javabullshitproject" depends="compile.module.javabullshitproject.production,compile.module.javabullshitproject.tests" description="Compile module JavaBullShitProject"/>
+  
+  <target name="compile.module.javabullshitproject.production" depends="register.custom.compilers" description="Compile module JavaBullShitProject; production classes">
+    <mkdir dir="${javabullshitproject.output.dir}"/>
+    <javac2 destdir="${javabullshitproject.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.javabullshitproject}/javac">
+      <compilerarg line="${compiler.args.javabullshitproject}"/>
+      <bootclasspath refid="javabullshitproject.module.bootclasspath"/>
+      <classpath refid="javabullshitproject.module.production.classpath"/>
+      <src refid="javabullshitproject.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.javabullshitproject"/>
+    </javac2>
+    
+    <copy todir="${javabullshitproject.output.dir}">
+      <fileset dir="${module.javabullshitproject.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.javabullshitproject.tests" depends="register.custom.compilers,compile.module.javabullshitproject.production" description="compile module JavaBullShitProject; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.javabullshitproject" description="cleanup module">
+    <delete dir="${javabullshitproject.output.dir}"/>
+    <delete dir="${javabullshitproject.testoutput.dir}"/>
+  </target>
+</project>

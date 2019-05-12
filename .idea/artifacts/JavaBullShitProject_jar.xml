@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JavaBullShitProject:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JavaBullShitProject_jar</output-path>
+    <root id="archive" name="JavaBullShitProject.jar">
+      <element id="module-output" name="JavaBullShitProject" />
+    </root>
+  </artifact>
+</component>
