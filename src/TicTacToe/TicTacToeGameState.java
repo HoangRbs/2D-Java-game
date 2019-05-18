@@ -25,11 +25,16 @@ public class TicTacToeGameState extends State {
             {
                 Board[y][x] = new Cell();
                 Cell currentCell = Board[y][x];
-                currentCell.posX = x;
-                currentCell.posY = y;
+                currentCell.posX = x * 64;
+                currentCell.posY = y * 64;
                 currentCell.Symbol = ' ';   // 'X'  or 'O'  or  ' '
                 currentCell.Cell_ImageButton = new UI_ImageButton(x * 64,y * 64,64,64,
                                         Assets.GetInstance().UI_TicTacToeCellButtonImages,null);
+
+                currentCell.BoundingBox.x = x * 64;
+                currentCell.BoundingBox.y = y * 64;
+                currentCell.BoundingBox.width = 64;
+                currentCell.BoundingBox.height = 64;
 
                 m_UIManager.AddUIObject(currentCell.Cell_ImageButton);
             }

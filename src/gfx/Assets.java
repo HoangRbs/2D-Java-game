@@ -69,6 +69,10 @@ public class Assets {          //SINGLETON
     public BufferedImage[] UI_StartButtonImages;
     public BufferedImage[] UI_TicTacToeCellButtonImages;
 
+    //TicTacToe
+    public BufferedImage Xsymbol;
+    public BufferedImage Osymbol;
+
     //DARK BACKGROUND
     public BufferedImage BackgroundImage;
 
@@ -170,6 +174,10 @@ public class Assets {          //SINGLETON
             Enemy2DeadItem = ImageLoader.LoadBufferedImage("res/Enemy2DeadItem.png");
             Enemy3DeadItem = ImageLoader.LoadBufferedImage("res/Enemy3DeadItem.png");
             Enemy4DeadItem = ImageLoader.LoadBufferedImage("res/Enemy4DeadItem.png");
+
+            //TicTacToe
+            Xsymbol = ImageLoader.LoadBufferedImage("res/Xsymbol.png");
+            Osymbol = ImageLoader.LoadBufferedImage("res/Osymbol.png");
 
             //INVENTORY
             Inventory = ImageLoader.LoadBufferedImage("res/Inventory.png");
