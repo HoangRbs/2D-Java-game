@@ -1,6 +1,7 @@
 package TicTacToe;
 
 import BaseMainGame.Game;
+import BaseMainGame.GameHandler;
 import States.State;
 import UserInterface.UI_ImageButton;
 import UserInterface.UI_Manager;
@@ -16,6 +17,8 @@ public class TicTacToeGameState extends State {
 
     public TicTacToeGameState()
     {
+        GameHandler.GetInstance().get_m_MouseManager().set_FocusingOnUIManager(m_UIManager);
+
         for(int y = 0; y < BoardSize;y++)
         {
             for(int x = 0; x < BoardSize; x++)
