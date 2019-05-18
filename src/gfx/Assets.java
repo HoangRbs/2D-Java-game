@@ -64,8 +64,10 @@ public class Assets {          //SINGLETON
 
     //USER INTERFACE
     private SpriteSheet UI_StartButton;
+    private SpriteSheet UI_TicTacToeCell;
 
     public BufferedImage[] UI_StartButtonImages;
+    public BufferedImage[] UI_TicTacToeCellButtonImages;
 
     //DARK BACKGROUND
     public BufferedImage BackgroundImage;
@@ -152,6 +154,11 @@ public class Assets {          //SINGLETON
             UI_StartButtonImages = new BufferedImage[2];
             UI_StartButtonImages[0] = UI_StartButton.Crop(0,0,124,62);
             UI_StartButtonImages[1] = UI_StartButton.Crop(0,62,124,62);
+
+            UI_TicTacToeCell = new SpriteSheet(ImageLoader.LoadBufferedImage("res/TicTacToeCell.png"));
+            UI_TicTacToeCellButtonImages = new BufferedImage[2];
+            UI_TicTacToeCellButtonImages[0] = UI_TicTacToeCell.Crop(0,0,64,64);
+            UI_TicTacToeCellButtonImages[1] = UI_TicTacToeCell.Crop(64,0,64,64);
 
             //DARK BACKGROUND
             BackgroundImage = ImageLoader.LoadBufferedImage("res/background.png");
