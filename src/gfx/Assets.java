@@ -157,8 +157,8 @@ public class Assets {          //SINGLETON
 
             UI_TicTacToeCell = new SpriteSheet(ImageLoader.LoadBufferedImage("res/TicTacToeCell.png"));
             UI_TicTacToeCellButtonImages = new BufferedImage[2];
-            UI_TicTacToeCellButtonImages[0] = UI_TicTacToeCell.Crop(0,0,64,64);
-            UI_TicTacToeCellButtonImages[1] = UI_TicTacToeCell.Crop(64,0,64,64);
+            UI_TicTacToeCellButtonImages[0] = UI_TicTacToeCell.Crop(0,0,60,60);
+            UI_TicTacToeCellButtonImages[1] = UI_TicTacToeCell.Crop(60,0,60,60);
 
             //DARK BACKGROUND
             BackgroundImage = ImageLoader.LoadBufferedImage("res/background.png");
