@@ -42,6 +42,21 @@ public class TicTacToeGameState extends State {
 
     @Override
     public void Update() {
+        if(basicSystem.isX_Win)
+        {
+            System.out.println("you win");
+            return;
+        }
+        else if(basicSystem.isO_Win)
+        {
+            System.out.println("you lose");
+            return;
+        }
+        else if(basicSystem.isNoMoreSpace && !basicSystem.isX_Win && !basicSystem.isO_Win)
+        {
+            System.out.println("DRAWN");
+            return;
+        }
 
         m_UIManager.Update();
 
@@ -53,6 +68,8 @@ public class TicTacToeGameState extends State {
                 currentCell.Update();
             }
         }
+
+        basicSystem.check_for_Winning();
     }
 
     @Override
