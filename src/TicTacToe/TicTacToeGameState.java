@@ -11,8 +11,7 @@ import java.awt.*;
 
 public class TicTacToeGameState extends State {
 
-    private int BoardSize = 3;
-    private Cell[][] Board = new Cell[BoardSize][BoardSize];
+    private int BoardSize = basicSystem.BoardSize;
     private UI_Manager m_UIManager = new UI_Manager();
 
     public TicTacToeGameState()
@@ -23,8 +22,8 @@ public class TicTacToeGameState extends State {
         {
             for(int x = 0; x < BoardSize; x++)
             {
-                Board[y][x] = new Cell();
-                Cell currentCell = Board[y][x];
+                basicSystem.Board[y][x] = new Cell();
+                Cell currentCell = basicSystem.Board[y][x];
                 currentCell.posX = x * 64;
                 currentCell.posY = y * 64;
                 currentCell.Symbol = ' ';   // 'X'  or 'O'  or  ' '
@@ -50,7 +49,7 @@ public class TicTacToeGameState extends State {
         {
             for(int Xindex = 0; Xindex < BoardSize;Xindex++)
             {
-                Cell currentCell = Board[Yindex][Xindex];
+                Cell currentCell = basicSystem.Board[Yindex][Xindex];
                 currentCell.Update();
             }
         }
@@ -65,7 +64,7 @@ public class TicTacToeGameState extends State {
         {
             for(int Xindex = 0; Xindex < BoardSize;Xindex++)
             {
-                Cell currentCell = Board[Yindex][Xindex];
+                Cell currentCell = basicSystem.Board[Yindex][Xindex];
                 currentCell.Render(m_RealScreenObject);
             }
         }

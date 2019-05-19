@@ -32,11 +32,16 @@ public class Cell {
             //click on the cell
             if(GameHandler.GetInstance().get_m_MouseManager().get_isLeftMouse_Pressed())
             {
-                Symbol = 'X';
-            }
-            if(GameHandler.GetInstance().get_m_MouseManager().get_isRightMouse_Pressed())
-            {
-                Symbol = 'O';
+                if(basicSystem.Xturn)
+                {
+                    Symbol = 'X';
+                }
+                else
+                {
+                    Symbol = 'O';
+                }
+
+                basicSystem.Xturn = !basicSystem.Xturn;  //O turn
             }
         }
     }
