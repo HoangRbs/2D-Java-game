@@ -41,14 +41,13 @@ public class Cell {
 
     public void Render(Graphics m_RealScreenObject)
     {
-
         if(Symbol == 'X')
         {
             m_RealScreenObject.drawImage(Assets.GetInstance().Xsymbol,(int)(posX + 2),(int)(posY + 2),64 - 4,64 - 4,null);
         }
-        //else if(Symbol == 'O')
-        //{
-        //    m_RealScreenObject.drawImage(Assets.GetInstance().Osymbol,(int)(posX + 2),(int)(posY + 2),64 - 4,64 - 4,null);
-        //}
+        else if(Symbol == 'O')
+        {
+            m_RealScreenObject.drawImage(Assets.GetInstance().Osymbol,(int)(posX + 2),(int)(posY + 2),64 - 4,64 - 4,null);
+        }
     }
 }

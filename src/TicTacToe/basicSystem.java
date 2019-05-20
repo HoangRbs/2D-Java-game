@@ -17,7 +17,7 @@ public class basicSystem {
     public static boolean isO_Win = false;
 
     //DRAWN
-    public static boolean isXO_drawn = false;
+    //public static boolean isXO_drawn = false;
     public static boolean isNoMoreSpace = false;
     public static int NoMoreSpaceCounter = 0;
 
@@ -28,7 +28,7 @@ public class basicSystem {
     public static int YwinEndIndex = -1;
 
 
-    private static int MaxToWin = 3;
+    public static int MaxToWin = 3;    //maximum of 3 X to win
 
     public static void check_for_Winning()
     {

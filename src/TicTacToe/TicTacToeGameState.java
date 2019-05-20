@@ -81,8 +81,14 @@ public class TicTacToeGameState extends State {
 
         m_UIManager.Render(m_RealScreenObject);
 
-        Player.Render(m_RealScreenObject);
-        //AI_Player.Render(m_RealScreenObject);
+        for(int Yindex = 0; Yindex < basicSystem.BoardSize;Yindex++)
+        {
+            for(int Xindex = 0; Xindex < basicSystem.BoardSize;Xindex++)
+            {
+                Cell currentCell = basicSystem.Board[Yindex][Xindex];
+                currentCell.Render(m_RealScreenObject);
+            }
+        }
 
         if(basicSystem.isX_Win || basicSystem.isO_Win)  //controled by basicSystem.checkForWinning()
         {
