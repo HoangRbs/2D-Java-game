@@ -1,6 +1,7 @@
 package TicTacToe;
 
 import BaseMainGame.GameHandler;
+import TicTacToe.AI.AI_Player;
 import UserInterface.UI_ImageButton;
 import UserInterface.UI_Object;
 import gfx.Assets;
@@ -29,19 +30,11 @@ public class Cell {
         if(BoundingBox.contains(GameHandler.GetInstance().get_m_MouseManager().getMouse_x(),
                                 GameHandler.GetInstance().get_m_MouseManager().getMouse_y()))
         {
-            //click on the cell
+            //we click X on the cell
             if(GameHandler.GetInstance().get_m_MouseManager().get_isLeftMouse_Pressed())
             {
-                if(basicSystem.Xturn)
-                {
-                    Symbol = 'X';
-                }
-                else
-                {
-                    Symbol = 'O';
-                }
-
-                basicSystem.Xturn = !basicSystem.Xturn;  //O turn
+                Symbol = 'X';
+                basicSystem.Xturn = false;  //after we done with X
             }
         }
     }
@@ -53,9 +46,9 @@ public class Cell {
         {
             m_RealScreenObject.drawImage(Assets.GetInstance().Xsymbol,(int)(posX + 2),(int)(posY + 2),64 - 4,64 - 4,null);
         }
-        else if(Symbol == 'O')
-        {
-            m_RealScreenObject.drawImage(Assets.GetInstance().Osymbol,(int)(posX + 2),(int)(posY + 2),64 - 4,64 - 4,null);
-        }
+        //else if(Symbol == 'O')
+        //{
+        //    m_RealScreenObject.drawImage(Assets.GetInstance().Osymbol,(int)(posX + 2),(int)(posY + 2),64 - 4,64 - 4,null);
+        //}
     }
 }

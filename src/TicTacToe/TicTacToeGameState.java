@@ -3,6 +3,7 @@ package TicTacToe;
 import BaseMainGame.Game;
 import BaseMainGame.GameHandler;
 import States.State;
+import TicTacToe.AI.AI_Player;
 import UserInterface.UI_ImageButton;
 import UserInterface.UI_Manager;
 import gfx.Assets;
@@ -53,33 +54,37 @@ public class TicTacToeGameState extends State {
 
         m_UIManager.Update();
 
-        for(int Yindex = 0; Yindex < BoardSize;Yindex++)
+        if(basicSystem.Xturn && isThisFrameForPlayerUpdate)   //our Turn (X turn)
         {
-            for(int Xindex = 0; Xindex < BoardSize;Xindex++)
-            {
-                Cell currentCell = basicSystem.Board[Yindex][Xindex];
-                currentCell.Update();
-            }
+            Player.Update();
+            //after we tick X :
+            basicSystem.check_for_Winning();
         }
 
-        basicSystem.check_for_Winning();
+        if(!basicSystem.Xturn && !isThisFrameForPlayerUpdate)  ////AI-PLAYER turn (O turn)
+        {
+            AI_Player.Update(); //remember to use Symbol = 'O' for render
+            //After AI tick O :
+            basicSystem.check_for_Winning();
+        }
+
+        isThisFrameForPlayerUpdate = !isThisFrameForPlayerUpdate;
     }
+
+    //we'll only use Player.Update() per frame and
+    //AI_Player.Update() per frame
+    //not gonna use both Update() in one Frame  --> for smooth X Update and Render
+    boolean isThisFrameForPlayerUpdate = true;  //initial condition since we tick X first at the beginning
 
     @Override
     public void Render(Graphics m_RealScreenObject) {
 
         m_UIManager.Render(m_RealScreenObject);
 
-        for(int Yindex = 0; Yindex < BoardSize;Yindex++)
-        {
-            for(int Xindex = 0; Xindex < BoardSize;Xindex++)
-            {
-                Cell currentCell = basicSystem.Board[Yindex][Xindex];
-                currentCell.Render(m_RealScreenObject);
-            }
-        }
+        Player.Render(m_RealScreenObject);
+        //AI_Player.Render(m_RealScreenObject);
 
-        if(basicSystem.isX_Win || basicSystem.isO_Win)
+        if(basicSystem.isX_Win || basicSystem.isO_Win)  //controled by basicSystem.checkForWinning()
         {
             basicSystem.DrawWinningLine(m_RealScreenObject);
         }
