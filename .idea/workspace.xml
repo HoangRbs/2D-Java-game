@@ -19,7 +19,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TicTacToe/TicTacToeGameState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1630">
+            <state relative-caret-position="2250">
               <caret line="98" column="42" selection-start-line="98" selection-start-column="42" selection-end-line="98" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -31,7 +31,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TicTacToe/Credit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
+            <state relative-caret-position="225">
               <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -43,7 +43,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TicTacToe/basicSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2665">
+            <state relative-caret-position="7450">
               <caret line="300" column="69" selection-start-line="300" selection-start-column="69" selection-end-line="300" selection-end-column="69" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -52,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/TicTacToe/AI/AI_Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1824">
-              <caret line="74" column="9" selection-start-line="74" selection-start-column="9" selection-end-line="74" selection-end-column="9" />
+            <state relative-caret-position="375">
+              <caret line="22" column="82" lean-forward="true" selection-start-line="22" selection-start-column="82" selection-end-line="22" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -64,10 +64,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TicTacToe/AI/NodeState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4742">
+            <state relative-caret-position="865">
               <caret line="213" column="43" selection-start-line="213" selection-start-column="43" selection-end-line="213" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -137,8 +137,8 @@
         <option value="$PROJECT_DIR$/src/TicTacToe/basicSystem.java" />
         <option value="$PROJECT_DIR$/src/gfx/Assets.java" />
         <option value="$PROJECT_DIR$/src/TicTacToe/Credit.java" />
-        <option value="$PROJECT_DIR$/src/TicTacToe/AI/AI_Player.java" />
         <option value="$PROJECT_DIR$/src/TicTacToe/AI/NodeState.java" />
+        <option value="$PROJECT_DIR$/src/TicTacToe/AI/AI_Player.java" />
       </list>
     </option>
   </component>
@@ -152,6 +152,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -210,8 +212,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -317,7 +317,7 @@
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14498934" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14658849" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -338,7 +338,7 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="4" type="SLIDING" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
-      <window_info active="true" anchor="right" id="Run" order="6" visible="true" weight="0.20628998" />
+      <window_info anchor="right" id="Run" order="6" weight="0.20628998" />
     </layout>
     <layout-to-restore>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13965885" />
@@ -716,26 +716,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TicTacToe/AI/AI_Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1824">
-          <caret line="74" column="9" selection-start-line="74" selection-start-column="9" selection-end-line="74" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TicTacToe/basicSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2665">
-          <caret line="300" column="69" selection-start-line="300" selection-start-column="69" selection-end-line="300" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TicTacToe/Cell.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -765,9 +745,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/TicTacToe/TicTacToeGameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2250">
+          <caret line="98" column="42" selection-start-line="98" selection-start-column="42" selection-end-line="98" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/TicTacToe/Credit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
+        <state relative-caret-position="225">
           <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -775,10 +765,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TicTacToe/TicTacToeGameState.java">
+    <entry file="file://$PROJECT_DIR$/src/TicTacToe/basicSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1630">
-          <caret line="98" column="42" selection-start-line="98" selection-start-column="42" selection-end-line="98" selection-end-column="42" />
+        <state relative-caret-position="7450">
+          <caret line="300" column="69" selection-start-line="300" selection-start-column="69" selection-end-line="300" selection-end-column="69" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -787,8 +777,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TicTacToe/AI/NodeState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4742">
+        <state relative-caret-position="865">
           <caret line="213" column="43" selection-start-line="213" selection-start-column="43" selection-end-line="213" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TicTacToe/AI/AI_Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="22" column="82" lean-forward="true" selection-start-line="22" selection-start-column="82" selection-end-line="22" selection-end-column="82" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

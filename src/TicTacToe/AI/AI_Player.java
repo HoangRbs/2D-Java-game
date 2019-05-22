@@ -19,7 +19,7 @@ public class AI_Player {
 
     public static void Update()
     {
-        //then O should be tick randomly until Player tick 3 X when things start to get tough
+        //then O should be tick randomly until Player tick 2 X when things start to get tough
         //but the main reason is to avoid super Long calculating time of AI player
         if(!PlayerTickTwoX)
         {
