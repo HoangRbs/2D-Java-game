@@ -74,20 +74,6 @@ public class AI_Player {
             }
         }
 
-
-        //copy that data into out main Board in basicSystem
-        /*
-        for(int Yindex = 0; Yindex < basicSystem.BoardSize;Yindex++)
-        {
-            for(int Xindex = 0; Xindex < basicSystem.BoardSize;Xindex++)
-            {
-                basicSystem.Board[Yindex][Xindex].Symbol = presentNodeState.Board[Yindex][Xindex].Symbol;
-                //only need the symbol
-                //the rest of the Cell data remains unchanged
-            }
-        }
-        */
-
         basicSystem.Xturn = true;   //done with O --> X turn
     }
 
@@ -181,7 +167,6 @@ public class AI_Player {
             if(!isPresentNodeState)
             {
                 currentLeafNodeState_I.remove();
-                //currentNodeState.removeLeaf(currentLeafNodeState_I,currentLeafNodeState);
             }
 
             if(alpha >=  beta)   //alpha, beta pruning

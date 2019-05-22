@@ -84,12 +84,6 @@ public class NodeState {
                             isX_Win = true;
                         else
                             isO_Win = true;
-
-                        //XwinStartIndex = Xindex;
-                        //XwinEndIndex = Xindex + (MaxToWin - 1);
-                        //YwinStartIndex = Yindex;
-                        //YwinEndIndex = Yindex;
-
                         return;
                     }
                     number_of_currentSymbol = 1;   //reinit for below usage
@@ -108,12 +102,6 @@ public class NodeState {
                             isX_Win = true;
                         else
                             isO_Win = true;
-
-                        //XwinStartIndex = Xindex;
-                        //XwinEndIndex = Xindex - (MaxToWin - 1);
-                        //YwinStartIndex = Yindex;
-                        //YwinEndIndex = Yindex;
-
                         return;
                     }
                     number_of_currentSymbol = 1;   //reinit for below usage
@@ -132,12 +120,6 @@ public class NodeState {
                             isX_Win = true;
                         else
                             isO_Win = true;
-
-                        //XwinStartIndex = Xindex;
-                        //XwinEndIndex = Xindex;
-                        //YwinStartIndex = Yindex;
-                        //YwinEndIndex = Yindex + (MaxToWin - 1);
-
                         return;
                     }
                     number_of_currentSymbol = 1;   //reinit for below usage
@@ -156,12 +138,6 @@ public class NodeState {
                             isX_Win = true;
                         else
                             isO_Win = true;
-
-                        //XwinStartIndex = Xindex;
-                        //XwinEndIndex = Xindex;
-                        //YwinStartIndex = Yindex;
-                        //YwinEndIndex = Yindex - (MaxToWin - 1);
-
                         return;
                     }
                     number_of_currentSymbol = 1;   //reinit for below usage
@@ -182,12 +158,6 @@ public class NodeState {
                             isX_Win = true;
                         else
                             isO_Win = true;
-
-                        //XwinStartIndex = Xindex;
-                        //XwinEndIndex = Xindex + (MaxToWin - 1);
-                        //YwinStartIndex = Yindex;
-                        //YwinEndIndex = Yindex - (MaxToWin - 1);
-
                         return;
                     }
                     number_of_currentSymbol = 1;
@@ -206,12 +176,6 @@ public class NodeState {
                             isX_Win = true;
                         else
                             isO_Win = true;
-
-                        //XwinStartIndex = Xindex;
-                        //XwinEndIndex = Xindex + (MaxToWin - 1);
-                        //YwinStartIndex = Yindex;
-                        //YwinEndIndex = Yindex + (MaxToWin - 1);
-
                         return;
                     }
                     number_of_currentSymbol = 1;
@@ -230,12 +194,6 @@ public class NodeState {
                             isX_Win = true;
                         else
                             isO_Win = true;
-
-                        //XwinStartIndex = Xindex;
-                        //XwinEndIndex = Xindex - (MaxToWin - 1);
-                        //YwinStartIndex = Yindex;
-                        //YwinEndIndex = Yindex + (MaxToWin - 1);
-
                         return;
                     }
                     number_of_currentSymbol = 1;
@@ -254,12 +212,6 @@ public class NodeState {
                             isX_Win = true;
                         else
                             isO_Win = true;
-
-                        //XwinStartIndex = Xindex;
-                        //XwinEndIndex = Xindex - (MaxToWin - 1);
-                        //YwinStartIndex = Yindex;
-                        //YwinEndIndex = Yindex - (MaxToWin - 1);
-
                         return;
                     }
                     number_of_currentSymbol = 1;
@@ -286,16 +238,10 @@ public class NodeState {
 
                     if(nextTurn == AI_Player.Oturn)
                     {
-                        //newLeafNode.Board[newLeafNode.temporaryY][newLeafNode.temporaryX].Symbol = 'O';
-                        //newLeafNode.Board[Yindex][Xindex].Symbol = 'O';
-                        //newLeafNode.MovedCell.Symbol = 'O';
                         newLeafNode.SymbolForMovedCell = 'O';
                     }
                     else  //nextTurn is X turn
                     {
-                        //newLeafNode.Board[newLeafNode.temporaryY][newLeafNode.temporaryX].Symbol = 'X';
-                        //newLeafNode.Board[Yindex][Xindex].Symbol = 'X';
-                        //newLeafNode.MovedCell.Symbol = 'X';
                         newLeafNode.SymbolForMovedCell = 'X';
                     }
 
@@ -303,15 +249,6 @@ public class NodeState {
                 }
             }
         }
-    }
-
-    public void removeLeaf(Iterator<NodeState> currentLeafNodeState_I,NodeState currentLeafNodeState)
-    {
-        //empty the slot
-        //currentLeafNodeState.Board[currentLeafNodeState.temporaryY][currentLeafNodeState.temporaryX].Symbol = ' ';
-
-        //remove Leaf of current NodeState
-        currentLeafNodeState_I.remove();
     }
 
     public void UndoMove()
