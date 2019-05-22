@@ -7,32 +7,76 @@ import TicTacToe.basicSystem;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.concurrent.Future;
 
 public class AI_Player {
 
 
     public static boolean Oturn = true;    //AI Player always start with O turn
+    public static boolean PlayerTickTwoX = false;
+    private static int numberOfX = 1;   //when we get here Player has previously tick X
 
     public static void Update()
     {
+        //then O should be tick randomly until Player tick 3 X when things start to get tough
+        //but the main reason is to avoid super Long calculating time of AI player
+        if(!PlayerTickTwoX)
+        {
+            for(int Yindex = 0; Yindex < basicSystem.BoardSize;Yindex++)
+            {
+                for(int Xindex = 0; Xindex < basicSystem.BoardSize;Xindex++)
+                {
+                    if(basicSystem.Board[Yindex][Xindex].Symbol == 'X')
+                    {
+                        int RandomX = -10;
+                        int RandomY = -10;
+
+                        do {
+                               RandomX = (int)Math.random()*3 + (Xindex - 1);
+                               RandomY = (int)Math.random()*3 + (Yindex - 1);
+                        }
+                        while((RandomX < 0 || RandomX > (basicSystem.BoardSize - 1) ||
+                              RandomY < 0 || RandomY > (basicSystem.BoardSize - 1)));
+
+                        basicSystem.Board[RandomY][RandomX].Symbol = 'O';
+                        basicSystem.Xturn = true;   //done with O --> X turn
+                        numberOfX++;    //Player will tick X next time
+
+                        if(numberOfX == 2)
+                            PlayerTickTwoX = true;  //next frame the below AI will handle
+                        return;
+                    }
+                }
+            }
+
+            //basicSystem.Xturn = true;   //done with O --> X turn
+            //PlayerTickThreeX = true;  //next frame the below AI will handle
+            return;
+        }
 
         //present
         //create present NodeState which has X moved previously
-        NodeState presentNodeState = new NodeState(basicSystem.Board);
-        MiniMaxTicTacToe(Oturn,presentNodeState);  //start future predict
+        NodeState presentNodeState = new NodeState();
+        MiniMaxTicTacToe(Oturn,presentNodeState,-1000,1000,true);  //start future predict
+
 
         //now copy the Board data from the LeafNode which has the bestMove in by its constructor
+
         for(NodeState currentLeafNode : presentNodeState.LeafNodes_State)
         {
             if(currentLeafNode.bestMove == presentNodeState.bestMove)
             {
-                presentNodeState = new NodeState(currentLeafNode.Board);
+                //presentNodeState = new NodeState(currentLeafNode.Board);
+                //modifying MovedCell also do it with our basicSystem.Board
+                currentLeafNode.MovedCell.Symbol = 'O';
                 break;
             }
         }
 
+
         //copy that data into out main Board in basicSystem
+        /*
         for(int Yindex = 0; Yindex < basicSystem.BoardSize;Yindex++)
         {
             for(int Xindex = 0; Xindex < basicSystem.BoardSize;Xindex++)
@@ -42,14 +86,14 @@ public class AI_Player {
                 //the rest of the Cell data remains unchanged
             }
         }
+        */
 
         basicSystem.Xturn = true;   //done with O --> X turn
     }
 
 
     //future predict
-    public static void MiniMaxTicTacToe(boolean nextTurn,NodeState currentNodeState)  //currentNode is already tick O from
-                                                                      //creating leaf Node previously
+    public static void MiniMaxTicTacToe(boolean nextTurn,NodeState currentNodeState,int alpha,int beta,boolean isPresentNodeState)
     {
         currentNodeState.nextTurn = nextTurn;  //X turn,O turn
         currentNodeState.isX_Win = false;
@@ -64,6 +108,8 @@ public class AI_Player {
             if(currentNodeState.isX_Win)
             {
                 currentNodeState.bestMove = 10;
+                if(currentNodeState.bestMove < beta)
+                    beta = currentNodeState.bestMove;
                 return;
             }
         }
@@ -72,6 +118,8 @@ public class AI_Player {
             if(currentNodeState.isO_Win)
             {
                 currentNodeState.bestMove = -10;
+                if(currentNodeState.bestMove > alpha)
+                    alpha = currentNodeState.bestMove;
                 return;
             }
         }
@@ -79,48 +127,66 @@ public class AI_Player {
         if(!currentNodeState.isO_Win && !currentNodeState.isX_Win && currentNodeState.isOutOfSpace)
         {
             currentNodeState.bestMove = 0;
+            if(currentNodeState.nextTurn == Oturn)
+            {
+                if(currentNodeState.bestMove < beta)
+                    beta = currentNodeState.bestMove;
+            }
+            else  //X turn
+            {
+                if(currentNodeState.bestMove > alpha)
+                    alpha = currentNodeState.bestMove;
+            }
             return;
         }
-        //
 
         //still not outOfSpace
-        //assume that...
-        //the [currentNode] has new X move + next O turn : bestMove = [all leafNodes] O new moves
-        //      |
-        //its [leaf node] has O new move + next X turn : bestMove = [all smaller LeafNodes] X new moves
         currentNodeState.createLeafNodes_State();   //create different child nodes with different moves
-        for(NodeState LeafNodeState : currentNodeState.LeafNodes_State)
-        {
-            MiniMaxTicTacToe(!currentNodeState.nextTurn,LeafNodeState);
-        }
 
-        if(nextTurn == Oturn)
-            currentNodeState.bestMove = MinOf(currentNodeState.LeafNodes_State);
+        if(nextTurn == Oturn)  //init bestMove for comparing
+        {
+            currentNodeState.bestMove = 1000;  //as +INFINITY
+        }
         else
-            currentNodeState.bestMove = MaxOf(currentNodeState.LeafNodes_State);
-    }
-
-    private static int MinOf(ArrayList<NodeState> LeafNodes_State)
-    {
-        int MinValue = LeafNodes_State.get(0).bestMove;
-        for(NodeState currentLeafNode : LeafNodes_State)
         {
-            if(currentLeafNode.bestMove < MinValue)
-                MinValue = currentLeafNode.bestMove;
+            currentNodeState.bestMove = -1000;  //as -INFINITY
         }
 
-        return MinValue;
-    }
-
-    private static  int MaxOf(ArrayList<NodeState> LeafNodes_State)
-    {
-        int MaxValue = LeafNodes_State.get(0).bestMove;
-        for(NodeState currentLeafNode : LeafNodes_State)
+        Iterator<NodeState> currentLeafNodeState_I = currentNodeState.LeafNodes_State.iterator();
+        while(currentLeafNodeState_I.hasNext())
         {
-            if(currentLeafNode.bestMove > MaxValue)
-                MaxValue = currentLeafNode.bestMove;
+            NodeState currentLeafNodeState = currentLeafNodeState_I.next();
+            currentLeafNodeState.Move();   //Move Board before processing it
+
+            MiniMaxTicTacToe(!currentNodeState.nextTurn,currentLeafNodeState,alpha,beta,false);
+
+            if(nextTurn == Oturn)
+            {
+                currentNodeState.bestMove = Math.min(currentNodeState.bestMove,currentLeafNodeState.bestMove);
+                if(currentNodeState.bestMove < beta)
+                    beta = currentNodeState.bestMove;
+            }
+            else  //X turn
+            {
+                currentNodeState.bestMove = Math.max(currentNodeState.bestMove,currentLeafNodeState.bestMove);
+                if(currentNodeState.bestMove > alpha)
+                    alpha = currentNodeState.bestMove;
+            }
+
+            //UndoMove Board
+            currentLeafNodeState.UndoMove();
+
+            //after we get out of the MiniMax above, it means that we get out of the current Leaf Node
+            //we no longer need this current Leaf Node --> delete it to avoid out of memory error
+            if(!isPresentNodeState)
+            {
+                currentLeafNodeState_I.remove();
+                //currentNodeState.removeLeaf(currentLeafNodeState_I,currentLeafNodeState);
+            }
+
+            if(alpha >=  beta)   //alpha, beta pruning
+                break;
         }
 
-        return MaxValue;
     }
 }

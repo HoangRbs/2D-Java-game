@@ -298,7 +298,7 @@ public class basicSystem {
 
         while(true)
         {
-            Rectangle box = new Rectangle(Xindex * 64 + 20,Yindex * 64 + 20,64 - 40,64 - 40);
+            Rectangle box = new Rectangle(Xindex * Cell.CellSize + 20,Yindex * Cell.CellSize + 20,Cell.CellSize - 40,Cell.CellSize - 40);
             m_RealScreenObject.setColor(Color.red);
             m_RealScreenObject.fillRect(box.x,box.y,box.width,box.height);
 

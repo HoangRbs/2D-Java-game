@@ -9,6 +9,8 @@ import gfx.Assets;
 import java.awt.*;
 
 public class Cell {
+    public static int CellSize = 200;
+
     public float posX;
     public float posY;
     public char Symbol; // '' or 'X' or 'O'
@@ -43,11 +45,11 @@ public class Cell {
     {
         if(Symbol == 'X')
         {
-            m_RealScreenObject.drawImage(Assets.GetInstance().Xsymbol,(int)(posX + 2),(int)(posY + 2),64 - 4,64 - 4,null);
+            m_RealScreenObject.drawImage(Assets.GetInstance().Xsymbol,(int)(posX + 2),(int)(posY + 2),CellSize - 4,CellSize- 4,null);
         }
         else if(Symbol == 'O')
         {
-            m_RealScreenObject.drawImage(Assets.GetInstance().Osymbol,(int)(posX + 2),(int)(posY + 2),64 - 4,64 - 4,null);
+            m_RealScreenObject.drawImage(Assets.GetInstance().Osymbol,(int)(posX + 2),(int)(posY + 2),CellSize - 4,CellSize - 4,null);
         }
     }
 }

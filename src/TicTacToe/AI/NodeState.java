@@ -4,26 +4,14 @@ import TicTacToe.Cell;
 import TicTacToe.basicSystem;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class NodeState {
     //each NodeState hold the "future state" of the game in AI Player
 
-    public NodeState(Cell[][] passedBoard)
+    public NodeState()
     {
-        LeafNodes_State = new ArrayList<NodeState>();
-        Board = new Cell[basicSystem.BoardSize][basicSystem.BoardSize];
 
-        //deep copy
-        for(int Yindex = 0;Yindex < basicSystem.BoardSize;Yindex++)
-        {
-            for(int Xindex = 0;Xindex < basicSystem.BoardSize;Xindex++)
-            {
-                Board[Yindex][Xindex] = new Cell();
-                Board[Yindex][Xindex].Symbol = passedBoard[Yindex][Xindex].Symbol;
-                Board[Yindex][Xindex].posX = passedBoard[Yindex][Xindex].posX;
-                Board[Yindex][Xindex].posY = passedBoard[Yindex][Xindex].posY;
-            }
-        }
     }
 
     public boolean nextTurn = AI_Player.Oturn;  //init
@@ -33,7 +21,7 @@ public class NodeState {
     private int NoMoreSpaceCounter = 0;
     public int bestMove = 0;
     public ArrayList<NodeState> LeafNodes_State;
-    public Cell[][] Board;          //temperary board for future prediction
+    //public Cell[][] Board;          //temperary board for future prediction
 
     public void checkWinning()
     {
@@ -49,7 +37,7 @@ public class NodeState {
         {
             for (int Xindex = 0; Xindex < basicSystem.BoardSize; Xindex++)
             {
-                if(Board[Yindex][Xindex].Symbol != ' ')
+                if(basicSystem.Board[Yindex][Xindex].Symbol != ' ')
                     NoMoreSpaceCounter++;
                 else //Symbol == ' ' --> empty
                 {
@@ -74,7 +62,7 @@ public class NodeState {
         {
             for(int Xindex = 0; Xindex < basicSystem.BoardSize; Xindex++)
             {
-                Cell currentCell = Board[Yindex][Xindex];
+                Cell currentCell = basicSystem.Board[Yindex][Xindex];
 
                 if(currentCell.Symbol != currentCheckingSymbol)
                     continue;
@@ -86,7 +74,7 @@ public class NodeState {
                 {
                     for(int i = 1; i <= (basicSystem.MaxToWin - 1);i++)
                     {
-                        if(Board[Yindex][Xindex + i].Symbol != currentCheckingSymbol)
+                        if(basicSystem.Board[Yindex][Xindex + i].Symbol != currentCheckingSymbol)
                             break;
                         number_of_currentSymbol++;
                     }
@@ -110,7 +98,7 @@ public class NodeState {
                 {
                     for(int i = 1; i <= (basicSystem.MaxToWin - 1);i++)
                     {
-                        if(Board[Yindex][Xindex - i].Symbol != currentCheckingSymbol)
+                        if(basicSystem.Board[Yindex][Xindex - i].Symbol != currentCheckingSymbol)
                             break;
                         number_of_currentSymbol++;
                     }
@@ -134,7 +122,7 @@ public class NodeState {
                 {
                     for(int i = 1; i <= (basicSystem.MaxToWin - 1);i++)
                     {
-                        if(Board[Yindex + i][Xindex].Symbol != currentCheckingSymbol)
+                        if(basicSystem.Board[Yindex + i][Xindex].Symbol != currentCheckingSymbol)
                             break;
                         number_of_currentSymbol++;
                     }
@@ -158,7 +146,7 @@ public class NodeState {
                 {
                     for(int i = 1; i <= (basicSystem.MaxToWin - 1);i++)
                     {
-                        if(Board[Yindex - i][Xindex].Symbol != currentCheckingSymbol)
+                        if(basicSystem.Board[Yindex - i][Xindex].Symbol != currentCheckingSymbol)
                             break;
                         number_of_currentSymbol++;
                     }
@@ -184,7 +172,7 @@ public class NodeState {
                 {
                     for(int i = 1; i <= basicSystem.MaxToWin - 1;i++)
                     {
-                        if(Board[Yindex - i][Xindex + i].Symbol != currentCheckingSymbol)
+                        if(basicSystem.Board[Yindex - i][Xindex + i].Symbol != currentCheckingSymbol)
                             break;
                         number_of_currentSymbol++;
                     }
@@ -208,7 +196,7 @@ public class NodeState {
                 {
                     for(int i = 1; i <= basicSystem.MaxToWin - 1;i++)
                     {
-                        if(Board[Yindex + i][Xindex + i].Symbol != currentCheckingSymbol)
+                        if(basicSystem.Board[Yindex + i][Xindex + i].Symbol != currentCheckingSymbol)
                             break;
                         number_of_currentSymbol++;
                     }
@@ -232,7 +220,7 @@ public class NodeState {
                 {
                     for(int i = 1; i <= basicSystem.MaxToWin - 1;i++)
                     {
-                        if(Board[Yindex + i][Xindex - i].Symbol != currentCheckingSymbol)
+                        if(basicSystem.Board[Yindex + i][Xindex - i].Symbol != currentCheckingSymbol)
                             break;
                         number_of_currentSymbol++;
                     }
@@ -256,7 +244,7 @@ public class NodeState {
                 {
                     for(int i = 1; i <= basicSystem.MaxToWin - 1;i++)
                     {
-                        if(Board[Yindex - i][Xindex - i].Symbol != currentCheckingSymbol)
+                        if(basicSystem.Board[Yindex - i][Xindex - i].Symbol != currentCheckingSymbol)
                             break;
                         number_of_currentSymbol++;
                     }
@@ -280,27 +268,59 @@ public class NodeState {
         }
     }
 
+    public Cell MovedCell = null;
+    private char SymbolForMovedCell = ' ';
+
     public void createLeafNodes_State()
     {
+        LeafNodes_State = new ArrayList<NodeState>();
+
         for(int Yindex = 0;Yindex < basicSystem.BoardSize;Yindex++)
         {
             for(int Xindex = 0;Xindex < basicSystem.BoardSize;Xindex++)
             {
-                if(Board[Yindex][Xindex].Symbol == ' ')  //empty
+                if(basicSystem.Board[Yindex][Xindex].Symbol == ' ')  //empty
                 {
-                    NodeState newLeafNode = new NodeState(Board);
+                    NodeState newLeafNode = new NodeState();
+                    newLeafNode.MovedCell = basicSystem.Board[Yindex][Xindex];
+
                     if(nextTurn == AI_Player.Oturn)
                     {
-                        newLeafNode.Board[Yindex][Xindex].Symbol = 'O';
+                        //newLeafNode.Board[newLeafNode.temporaryY][newLeafNode.temporaryX].Symbol = 'O';
+                        //newLeafNode.Board[Yindex][Xindex].Symbol = 'O';
+                        //newLeafNode.MovedCell.Symbol = 'O';
+                        newLeafNode.SymbolForMovedCell = 'O';
                     }
                     else  //nextTurn is X turn
                     {
-                        newLeafNode.Board[Yindex][Xindex].Symbol = 'X';
+                        //newLeafNode.Board[newLeafNode.temporaryY][newLeafNode.temporaryX].Symbol = 'X';
+                        //newLeafNode.Board[Yindex][Xindex].Symbol = 'X';
+                        //newLeafNode.MovedCell.Symbol = 'X';
+                        newLeafNode.SymbolForMovedCell = 'X';
                     }
 
                     LeafNodes_State.add(newLeafNode);
                 }
             }
         }
+    }
+
+    public void removeLeaf(Iterator<NodeState> currentLeafNodeState_I,NodeState currentLeafNodeState)
+    {
+        //empty the slot
+        //currentLeafNodeState.Board[currentLeafNodeState.temporaryY][currentLeafNodeState.temporaryX].Symbol = ' ';
+
+        //remove Leaf of current NodeState
+        currentLeafNodeState_I.remove();
+    }
+
+    public void UndoMove()
+    {
+        MovedCell.Symbol = ' ';
+    }
+
+    public void Move()
+    {
+        MovedCell.Symbol = SymbolForMovedCell;
     }
 }

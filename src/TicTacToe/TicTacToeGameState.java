@@ -25,16 +25,17 @@ public class TicTacToeGameState extends State {
             {
                 basicSystem.Board[y][x] = new Cell();
                 Cell currentCell = basicSystem.Board[y][x];
-                currentCell.posX = x * 64;
-                currentCell.posY = y * 64;
+                currentCell.posX = x * Cell.CellSize;
+                currentCell.posY = y * Cell.CellSize;
                 currentCell.Symbol = ' ';   // 'X'  or 'O'  or  ' '
-                currentCell.Cell_ImageButton = new UI_ImageButton(x * 64,y * 64,64,64,
+                currentCell.Cell_ImageButton = new UI_ImageButton(x * Cell.CellSize,y * Cell.CellSize,
+                                                                    Cell.CellSize,Cell.CellSize,
                                         Assets.GetInstance().UI_TicTacToeCellButtonImages,null);
 
-                currentCell.BoundingBox.x = x * 64;
-                currentCell.BoundingBox.y = y * 64;
-                currentCell.BoundingBox.width = 64;
-                currentCell.BoundingBox.height = 64;
+                currentCell.BoundingBox.x = x * Cell.CellSize;
+                currentCell.BoundingBox.y = y * Cell.CellSize;
+                currentCell.BoundingBox.width = Cell.CellSize;
+                currentCell.BoundingBox.height = Cell.CellSize;
 
                 m_UIManager.AddUIObject(currentCell.Cell_ImageButton);
             }
@@ -90,10 +91,12 @@ public class TicTacToeGameState extends State {
             }
         }
 
-        if(basicSystem.isX_Win || basicSystem.isO_Win)  //controled by basicSystem.checkForWinning()
+        if(basicSystem.isX_Win || basicSystem.isO_Win)
         {
             basicSystem.DrawWinningLine(m_RealScreenObject);
         }
+
+        Credit.Render(m_RealScreenObject);
     }
 
     @Override

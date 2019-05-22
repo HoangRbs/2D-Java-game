@@ -76,6 +76,9 @@ public class Assets {          //SINGLETON
     //DARK BACKGROUND
     public BufferedImage BackgroundImage;
 
+    //AUTHOR
+    public BufferedImage AuthorImage;
+
     //Inventory
     public BufferedImage Inventory;
 
@@ -178,6 +181,9 @@ public class Assets {          //SINGLETON
             //TicTacToe
             Xsymbol = ImageLoader.LoadBufferedImage("res/Xsymbol.png");
             Osymbol = ImageLoader.LoadBufferedImage("res/Osymbol.png");
+
+            //AUTOR image
+            AuthorImage = ImageLoader.LoadBufferedImage("res/HandsomeAuthor.png");
 
             //INVENTORY
             Inventory = ImageLoader.LoadBufferedImage("res/Inventory.png");
