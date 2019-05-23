@@ -36,10 +36,10 @@ public class MenuState extends State {
 
                 StatesManager.StateChange = true;
 
-                //StatesManager.set_CurrentStatesID(StatesManager.STATES_ID._GameState_);
+                StatesManager.set_CurrentStatesID(StatesManager.STATES_ID._GameState_);
                 //StatesManager.set_CurrentStatesID(StatesManager.STATES_ID._testA_Star_state_);   //for testing purpose
 
-                StatesManager.set_CurrentStatesID(StatesManager.STATES_ID._TicTacToeState_);
+                //StatesManager.set_CurrentStatesID(StatesManager.STATES_ID._TicTacToeState_);
 
                 //after MenuState is removed --> UI Manager is null --> we don't want our
                 //MouseManager to focus on a !@#$ UI --> set to null

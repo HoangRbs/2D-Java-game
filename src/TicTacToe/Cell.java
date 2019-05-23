@@ -9,7 +9,7 @@ import gfx.Assets;
 import java.awt.*;
 
 public class Cell {
-    public static int CellSize = 200;
+    public static int CellSize = 50;
 
     public float posX;
     public float posY;

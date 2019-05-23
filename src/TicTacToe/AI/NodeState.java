@@ -260,4 +260,276 @@ public class NodeState {
     {
         MovedCell.Symbol = SymbolForMovedCell;
     }
+
+    public int calHeuristic()
+    {
+        int O_canWinLines = 0;
+        int X_canWinLines = 0;
+
+        //horizontal check
+        for(int Yindex = 0; Yindex < basicSystem.BoardSize;Yindex++) {
+            //check Line completion
+            if(isHorizontalLineCompletionFor('X',Yindex))
+            {
+                X_canWinLines++;
+            }
+
+            if(isHorizontalLineCompletionFor('O',Yindex))
+            {
+                O_canWinLines++;
+            }
+        }
+
+        //vertical check
+        for(int Xindex = 0;Xindex < basicSystem.BoardSize;Xindex++)
+        {
+            if(isVerticalLineCompletionFor('X',Xindex))
+            {
+                X_canWinLines++;
+            }
+
+            if(isVerticalLineCompletionFor('O',Xindex))
+            {
+                O_canWinLines++;
+            }
+        }
+
+        //cross LINES check
+        int limitIndex = basicSystem.BoardSize - basicSystem.MaxToWin;
+
+        //check right cross Lines
+        for(int Yindex = 0; Yindex <= limitIndex;Yindex++)
+        {
+            if(Yindex == 0)
+            {
+                for (int Xindex = limitIndex; Xindex >= 0; Xindex--)
+                {
+                    if(isRightCrossLineCompletionFor('X',Yindex,Xindex))
+                    {
+                        X_canWinLines++;
+                    }
+                    if(isRightCrossLineCompletionFor('O',Yindex,Xindex))
+                    {
+                        O_canWinLines++;
+                    }
+                }
+            }
+            else
+            {
+                //only Xindex == 0 here
+                if(isRightCrossLineCompletionFor('X',Yindex,0))
+                {
+                    X_canWinLines++;
+                }
+                if(isRightCrossLineCompletionFor('O',Yindex,0))
+                {
+                    O_canWinLines++;
+                }
+            }
+        }
+
+        //check left cross Lines
+        for(int Yindex = 0;Yindex <= limitIndex;Yindex++)
+        {
+            if(Yindex == 0)
+            {
+                for(int Xindex = (basicSystem.BoardSize - 1) - limitIndex; Xindex <= basicSystem.BoardSize -1;Xindex++)
+                {
+                    if(isLeftCrossLineCompletionFor('X',Yindex,Xindex))
+                    {
+                        X_canWinLines++;
+                    }
+                    if(isLeftCrossLineCompletionFor('O',Yindex,Xindex))
+                    {
+                        O_canWinLines++;
+                    }
+                }
+            }
+            else
+            {
+                //only Xindex == boardSize - 1 here
+                if(isLeftCrossLineCompletionFor('X',Yindex,basicSystem.BoardSize - 1))
+                {
+                    X_canWinLines++;
+                }
+                if(isLeftCrossLineCompletionFor('O',Yindex,basicSystem.BoardSize - 1))
+                {
+                    O_canWinLines++;
+                }
+            }
+        }
+
+        if(nextTurn == AI_Player.Oturn)
+        {
+            return O_canWinLines - X_canWinLines;
+        }
+        else
+        {
+            return X_canWinLines - O_canWinLines;
+        }
+    }
+
+    private boolean isHorizontalLineCompletionFor(char Symbol,int Yindex)
+    {
+        char AvoidSymbol = ' ';
+        if(Symbol == 'X')
+            AvoidSymbol = 'O';
+        else
+            AvoidSymbol = 'X';
+
+        for(int Xindex = 0; Xindex < basicSystem.BoardSize;Xindex++)
+        {
+            if(basicSystem.Board[Yindex][Xindex].Symbol != AvoidSymbol)
+            {
+                int numberOfAvoidSymbol = 0;
+
+                for(int currentXindex = Xindex; currentXindex <= Xindex + (basicSystem.MaxToWin - 1); currentXindex++)
+                {
+                    if(currentXindex > basicSystem.BoardSize - 1)        //out of bound
+                    {
+                        return false;
+                    }
+
+                    if(basicSystem.Board[Yindex][currentXindex].Symbol == AvoidSymbol)
+                    {
+                        numberOfAvoidSymbol++;
+                        break;
+                    }
+                }
+
+                if(numberOfAvoidSymbol == 0)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isVerticalLineCompletionFor(char Symbol,int Xindex)
+    {
+        char AvoidSymbol = ' ';
+        if(Symbol == 'X')
+            AvoidSymbol = 'O';
+        else
+            AvoidSymbol = 'X';
+
+        for(int Yindex = 0; Yindex < basicSystem.BoardSize;Yindex++)
+        {
+            if(basicSystem.Board[Yindex][Xindex].Symbol != AvoidSymbol)
+            {
+                int numberOfAvoidSymbol = 0;
+
+                for(int currentYindex = Yindex; currentYindex <= Yindex + (basicSystem.MaxToWin - 1); currentYindex++)
+                {
+                    if(currentYindex > basicSystem.BoardSize - 1)        //out of bound
+                    {
+                        return false;
+                    }
+
+                    if(basicSystem.Board[currentYindex][Xindex].Symbol == AvoidSymbol)
+                    {
+                        numberOfAvoidSymbol++;
+                        break;
+                    }
+                }
+
+                if(numberOfAvoidSymbol == 0)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isRightCrossLineCompletionFor(char Symbol,int Yindex,int Xindex)
+    {
+        char AvoidSymbol = ' ';
+        if(Symbol == 'X')
+            AvoidSymbol = 'O';
+        else
+            AvoidSymbol = 'X';
+
+        while(Yindex <= basicSystem.BoardSize - 1 && Xindex <= basicSystem.BoardSize -1)
+        {
+            if(basicSystem.Board[Yindex][Xindex].Symbol != AvoidSymbol)
+            {
+                int currentXindex = Xindex;
+                int currentYindex = Yindex;
+                int numberOfAvoidSymbol = 0;
+
+                while(currentXindex <= Xindex + (basicSystem.MaxToWin - 1) &&
+                        currentYindex <= Yindex + (basicSystem.MaxToWin - 1))
+                {
+                    if(currentXindex > basicSystem.BoardSize - 1 || currentYindex > basicSystem.BoardSize - 1)  //out of bound
+                    {
+                        return false;
+                    }
+
+                    if(basicSystem.Board[currentYindex][currentXindex].Symbol == AvoidSymbol)
+                    {
+                        numberOfAvoidSymbol++;
+                        break;
+                    }
+
+                    currentXindex++;
+                    currentYindex++;
+                }
+
+                if(numberOfAvoidSymbol == 0)
+                    return true;
+            }
+            Yindex++;
+            Xindex++;
+        }
+
+        return false;
+    }
+
+    private boolean isLeftCrossLineCompletionFor(char Symbol,int Yindex,int Xindex)
+    {
+        char AvoidSymbol = ' ';
+        if(Symbol == 'X')
+            AvoidSymbol = 'O';
+        else
+            AvoidSymbol = 'X';
+
+        while(Yindex <= basicSystem.BoardSize - 1 && Xindex >= 0)
+        {
+            if(basicSystem.Board[Yindex][Xindex].Symbol != AvoidSymbol)
+            {
+                int currentXindex = Xindex;
+                int currentYindex = Yindex;
+                int numberOfAvoidSymbol = 0;
+
+                while(currentXindex >= Xindex - (basicSystem.MaxToWin - 1) &&
+                        currentYindex <= Yindex + (basicSystem.MaxToWin - 1))
+                {
+                    if(currentXindex < 0 || currentYindex > basicSystem.BoardSize - 1)  //out of bound
+                    {
+                        return false;
+                    }
+
+                    if(basicSystem.Board[currentYindex][currentXindex].Symbol == AvoidSymbol)
+                    {
+                        numberOfAvoidSymbol++;
+                        break;
+                    }
+
+                    currentXindex--;
+                    currentYindex++;
+                }
+
+                if(numberOfAvoidSymbol == 0)
+                    return true;
+            }
+            Yindex++;
+            Xindex--;
+        }
+
+        return false;
+    }
 }

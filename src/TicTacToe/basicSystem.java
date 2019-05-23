@@ -11,7 +11,7 @@ public class basicSystem {
     }
 
     public static boolean Xturn = true;
-    public static int BoardSize = 3;
+    public static int BoardSize = 10;
     public static Cell[][] Board = new Cell[BoardSize][BoardSize];
     public static boolean isX_Win = false;
     public static boolean isO_Win = false;
@@ -28,7 +28,7 @@ public class basicSystem {
     public static int YwinEndIndex = -1;
 
 
-    public static int MaxToWin = 3;    //maximum of 3 X to win
+    public static int MaxToWin = 5;    //MaxToWin always have to be <= BoardSize or f*ck up
 
     public static void check_for_Winning()
     {
