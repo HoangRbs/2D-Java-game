@@ -10,7 +10,7 @@ public class Credit {
     {
         int x = 650;
         int y = 50;
-        Text.DrawText(m_RealScreenObject,"The Unbeatable TicTacToe",x,y,Color.black, Assets.GetInstance().m_StandardFont18);
+        Text.DrawText(m_RealScreenObject,"The Dump TicTacToe",x,y,Color.black, Assets.GetInstance().m_StandardFont18);
         Text.DrawText(m_RealScreenObject,"by HoangVy 99",x,y += 40,Color.black, Assets.GetInstance().m_StandardFont18);
         Text.DrawText(m_RealScreenObject,"dob: 17-06-99",x,y += 40,Color.black, Assets.GetInstance().m_StandardFont18);
         Text.DrawText(m_RealScreenObject,"test date:",x,y += 40,Color.black, Assets.GetInstance().m_StandardFont18);

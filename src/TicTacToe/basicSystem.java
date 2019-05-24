@@ -11,7 +11,7 @@ public class basicSystem {
     }
 
     public static boolean Xturn = true;
-    public static int BoardSize = 10;
+    public final static int BoardSize = 7;
     public static Cell[][] Board = new Cell[BoardSize][BoardSize];
     public static boolean isX_Win = false;
     public static boolean isO_Win = false;
@@ -28,7 +28,10 @@ public class basicSystem {
     public static int YwinEndIndex = -1;
 
 
-    public static int MaxToWin = 5;    //MaxToWin always have to be <= BoardSize or f*ck up
+    public final static int MaxToWin = 5;    //MaxToWin always have to be <= BoardSize or f*ck up
+
+    //OPTIMIZE AREA
+    public final static int OptimizeArea = 7;  //always >= MaxToWin and <= BoardSize and must be an ODD NUMBER
 
     public static void check_for_Winning()
     {

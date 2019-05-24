@@ -3,6 +3,7 @@ package TicTacToe.AI;
 import BaseMainGame.GameHandler;
 import Path_Fiding.Node;
 import TicTacToe.Cell;
+import TicTacToe.Player;
 import TicTacToe.basicSystem;
 
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class AI_Player {
         //present
         //create present NodeState which has X moved previously
         NodeState presentNodeState = new NodeState();
-        MiniMaxTicTacToe(Oturn,presentNodeState,-1000,1000,6,true);  //start future predict
+        MiniMaxTicTacToe(Oturn,presentNodeState,-10000,10000,5,true);  //start future predict
 
 
         //now copy the Board data from the LeafNode which has the bestMove in by its constructor
@@ -76,9 +77,9 @@ public class AI_Player {
     public static void MiniMaxTicTacToe(boolean nextTurn,NodeState currentNodeState,int alpha,int beta,int allowDepth,boolean isPresentNodeState)
     {
         currentNodeState.nextTurn = nextTurn;  //X turn,O turn
-        currentNodeState.isX_Win = false;
-        currentNodeState.isO_Win = false;
-        currentNodeState.isOutOfSpace = false;
+        //currentNodeState.isX_Win = false;
+        //currentNodeState.isO_Win = false;
+        //currentNodeState.isOutOfSpace = false;
 
         currentNodeState.checkWinning();
 
@@ -127,6 +128,9 @@ public class AI_Player {
         }
 
         //still not outOfSpace
+        if(isPresentNodeState) {
+            currentNodeState.MovedCell = Player.JustTickCell;  //for optimization purpose
+        }
         currentNodeState.createLeafNodes_State();   //create different child nodes with different moves
 
         if(nextTurn == Oturn)  //init bestMove for comparing

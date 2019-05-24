@@ -9,7 +9,7 @@ import gfx.Assets;
 import java.awt.*;
 
 public class Cell {
-    public static int CellSize = 50;
+    public static final int CellSize = 80;
 
     public float posX;
     public float posY;
@@ -37,6 +37,8 @@ public class Cell {
             {
                 Symbol = 'X';
                 basicSystem.Xturn = false;  //after we done with X
+
+                Player.JustTickCell = this;
             }
         }
     }

@@ -227,9 +227,17 @@ public class NodeState {
     {
         LeafNodes_State = new ArrayList<NodeState>();
 
-        for(int Yindex = 0;Yindex < basicSystem.BoardSize;Yindex++)
+        //LeafNodes optimization --> create less leafNodes on large Board
+
+        /*
+        Cell startCell = findStartCellFrom(this.MovedCell);
+        int startCell_Yindex = (int)startCell.posY/Cell.CellSize;
+        int startCell_Xindex = (int)startCell.posX/Cell.CellSize;
+        */
+
+        for(int Yindex = 0/*startCell_Yindex */;Yindex <= basicSystem.BoardSize - 1/*startCell_Yindex + (basicSystem.OptimizeArea - 1)*/ ;Yindex++)
         {
-            for(int Xindex = 0;Xindex < basicSystem.BoardSize;Xindex++)
+            for(int Xindex = 0/*startCell_Xindex*/ ;Xindex <= basicSystem.BoardSize - 1/*startCell_Xindex + (basicSystem.OptimizeArea -1)*/ ;Xindex++)
             {
                 if(basicSystem.Board[Yindex][Xindex].Symbol == ' ')  //empty
                 {
@@ -249,6 +257,40 @@ public class NodeState {
                 }
             }
         }
+    }
+
+    private Cell findStartCellFrom(Cell _movedCell_)
+    {
+        int _movedCellXIndex = (int)_movedCell_.posX/Cell.CellSize;
+        int _movedCellYIndex = (int)_movedCell_.posY/Cell.CellSize;
+        int startCellXIndex =  _movedCellXIndex - basicSystem.OptimizeArea/2;
+        int startCellYIndex =  _movedCellYIndex - basicSystem.OptimizeArea/2;
+
+        for(int tempX = _movedCellXIndex + 1; tempX <= _movedCellXIndex + basicSystem.OptimizeArea/2; tempX++)
+        {
+            if(tempX > basicSystem.BoardSize - 1)
+                startCellXIndex--;
+        }
+
+        for(int tempX = _movedCellXIndex - 1; tempX >= _movedCellXIndex - basicSystem.OptimizeArea/2; tempX--)
+        {
+            if(tempX < 0)
+                startCellXIndex++;
+        }
+
+        for(int tempY = _movedCellYIndex + 1; tempY <= _movedCellYIndex + basicSystem.OptimizeArea/2; tempY++)
+        {
+            if(tempY > basicSystem.BoardSize - 1)
+                startCellYIndex--;
+        }
+
+        for(int tempY = _movedCellYIndex - 1; tempY >= _movedCellYIndex - basicSystem.OptimizeArea/2; tempY--)
+        {
+            if(tempY < 0)
+                startCellYIndex++;
+        }
+
+        return basicSystem.Board[startCellYIndex][startCellXIndex];
     }
 
     public void UndoMove()

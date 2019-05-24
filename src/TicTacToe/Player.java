@@ -3,6 +3,7 @@ package TicTacToe;
 import java.awt.*;
 
 public class Player {
+    public static Cell JustTickCell = null;
 
     public static void Update()
     {
