@@ -53,7 +53,7 @@ public class AI_Player {
         //present
         //create present NodeState which has X moved previously
         NodeState presentNodeState = new NodeState();
-        MiniMaxTicTacToe(Oturn,presentNodeState,-10000,10000,5,true);  //start future predict
+        MiniMaxTicTacToe(Oturn,presentNodeState,-10000,10000,4,true);  //start future predict
 
 
         //now copy the Board data from the LeafNode which has the bestMove in by its constructor
