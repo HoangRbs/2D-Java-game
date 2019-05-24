@@ -64,11 +64,20 @@ public class Assets {          //SINGLETON
 
     //USER INTERFACE
     private SpriteSheet UI_StartButton;
+    private SpriteSheet UI_TicTacToeCell;
 
     public BufferedImage[] UI_StartButtonImages;
+    public BufferedImage[] UI_TicTacToeCellButtonImages;
+
+    //TicTacToe
+    public BufferedImage Xsymbol;
+    public BufferedImage Osymbol;
 
     //DARK BACKGROUND
     public BufferedImage BackgroundImage;
+
+    //AUTHOR
+    public BufferedImage AuthorImage;
 
     //Inventory
     public BufferedImage Inventory;
@@ -153,6 +162,11 @@ public class Assets {          //SINGLETON
             UI_StartButtonImages[0] = UI_StartButton.Crop(0,0,124,62);
             UI_StartButtonImages[1] = UI_StartButton.Crop(0,62,124,62);
 
+            UI_TicTacToeCell = new SpriteSheet(ImageLoader.LoadBufferedImage("res/TicTacToeCell.png"));
+            UI_TicTacToeCellButtonImages = new BufferedImage[2];
+            UI_TicTacToeCellButtonImages[0] = UI_TicTacToeCell.Crop(0,0,60,60);
+            UI_TicTacToeCellButtonImages[1] = UI_TicTacToeCell.Crop(60,0,60,60);
+
             //DARK BACKGROUND
             BackgroundImage = ImageLoader.LoadBufferedImage("res/background.png");
 
@@ -163,6 +177,13 @@ public class Assets {          //SINGLETON
             Enemy2DeadItem = ImageLoader.LoadBufferedImage("res/Enemy2DeadItem.png");
             Enemy3DeadItem = ImageLoader.LoadBufferedImage("res/Enemy3DeadItem.png");
             Enemy4DeadItem = ImageLoader.LoadBufferedImage("res/Enemy4DeadItem.png");
+
+            //TicTacToe
+            Xsymbol = ImageLoader.LoadBufferedImage("res/Xsymbol.png");
+            Osymbol = ImageLoader.LoadBufferedImage("res/Osymbol.png");
+
+            //AUTOR image
+            AuthorImage = ImageLoader.LoadBufferedImage("res/HandsomeAuthor.png");
 
             //INVENTORY
             Inventory = ImageLoader.LoadBufferedImage("res/Inventory.png");

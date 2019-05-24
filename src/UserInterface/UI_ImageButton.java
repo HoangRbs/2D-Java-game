@@ -35,6 +35,7 @@ public class UI_ImageButton extends UI_Object{
 
     @Override
     protected void on_ClickToDo() {
-        m_UIClickFunctionObject.on_ClickToDo();
+        if(m_UIClickFunctionObject != null)
+            m_UIClickFunctionObject.on_ClickToDo();
     }
 }

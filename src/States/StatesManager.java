@@ -1,6 +1,7 @@
 package States;
 
 import BaseMainGame.Game;
+import TicTacToe.TicTacToeGameState;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -58,6 +59,12 @@ public class StatesManager {
                 currentState = States.peek();
                 currentState.SetGameObject(m_GameObject);
             }
+            else if(CurrentStateID == STATES_ID._TicTacToeState_)
+            {
+                States.add(new TicTacToeGameState());
+                currentState = States.peek();
+                currentState.SetGameObject(m_GameObject);
+            }
 
             StateChange  = false;
         }
@@ -79,7 +86,7 @@ public class StatesManager {
     //to change STATE from outside (GameState/MenuState)
     public enum STATES_ID
     {
-        _GameState_,_MenuState_,_testA_Star_state_
+        _GameState_,_MenuState_,_testA_Star_state_,_TicTacToeState_
     }
 
     private static  STATES_ID CurrentStateID;
