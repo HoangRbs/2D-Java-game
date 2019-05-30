@@ -32,14 +32,11 @@ public class MenuState extends State {
 
             @Override
             public void on_ClickToDo() {
-                //System.out.println(" Start clicked ");
-
                 StatesManager.StateChange = true;
 
-                //StatesManager.set_CurrentStatesID(StatesManager.STATES_ID._GameState_);
+                StatesManager.set_CurrentStatesID(StatesManager.STATES_ID._GameState_);
                 //StatesManager.set_CurrentStatesID(StatesManager.STATES_ID._testA_Star_state_);   //for testing purpose
-
-                StatesManager.set_CurrentStatesID(StatesManager.STATES_ID._TicTacToeState_);
+                //StatesManager.set_CurrentStatesID(StatesManager.STATES_ID._TicTacToeState_);
 
                 //after MenuState is removed --> UI Manager is null --> we don't want our
                 //MouseManager to focus on a !@#$ UI --> set to null
@@ -51,27 +48,12 @@ public class MenuState extends State {
     @Override
     public void Update()
     {
-        /*
-        if(GameHandler.GetInstance().getKeyManager().isPressEnter)
-        {
-            StatesManager.StateChange = true;
-            StatesManager.set_CurrentStatesID(StatesManager.STATES_ID._GameState_);
-        }
-        */
-
-        //System.out.println(GameHandler.GetInstance().getMouseManager().getMouse_x() + " " +
-        //                    GameHandler.GetInstance().getMouseManager().getMouse_y());
-
         m_UIManager.Update();
     }
 
     public void Render(Graphics m_RealScreenObject)
     {
-        /*
-        m_RealScreenObject.drawImage(m_GameAssets.MenuStateBackground_texture,0,0,
-                                     m_GameObject.GetGameWidth(),m_GameObject.GetGameHeight(),
-                                    null);
-                                    */
+
         //Dark Background
         m_RealScreenObject.drawImage(Assets.GetInstance().BackgroundImage,0,0,2000,2000,null);
 

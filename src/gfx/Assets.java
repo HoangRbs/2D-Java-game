@@ -65,9 +65,11 @@ public class Assets {          //SINGLETON
     //USER INTERFACE
     private SpriteSheet UI_StartButton;
     private SpriteSheet UI_TicTacToeCell;
+    private SpriteSheet UI_RestartButton;
 
     public BufferedImage[] UI_StartButtonImages;
     public BufferedImage[] UI_TicTacToeCellButtonImages;
+    public BufferedImage[] UI_RestartButtonImages;
 
     //TicTacToe
     public BufferedImage Xsymbol;
@@ -161,6 +163,11 @@ public class Assets {          //SINGLETON
             UI_StartButtonImages = new BufferedImage[2];
             UI_StartButtonImages[0] = UI_StartButton.Crop(0,0,124,62);
             UI_StartButtonImages[1] = UI_StartButton.Crop(0,62,124,62);
+
+            UI_RestartButton = new SpriteSheet(ImageLoader.LoadBufferedImage("res/RestartButton.png"));
+            UI_RestartButtonImages = new BufferedImage[2];
+            UI_RestartButtonImages[0] = UI_RestartButton.Crop(0,0,200,150);
+            UI_RestartButtonImages[1] = UI_RestartButton.Crop(0,150,200,150);
 
             UI_TicTacToeCell = new SpriteSheet(ImageLoader.LoadBufferedImage("res/TicTacToeCell.png"));
             UI_TicTacToeCellButtonImages = new BufferedImage[2];
